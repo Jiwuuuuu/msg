@@ -29,7 +29,7 @@ type Message struct {
 func (m *Message) Add(db *sql.DB) error {
 	const query = `
 		INSERT INTO messages (
-			RoomID, Timestamp, Content, Checksum, Username
+			roomID, timestamp, content, checksum, username
 		)
 
 		VALUES (
@@ -48,9 +48,9 @@ func (m *Message) Add(db *sql.DB) error {
 	return nil
 }
 
-// Query is used to retrieve all of the messages from the database
-func Query(db *sql.DB) ([]Message, error) {
-	rows, err := db.Query("SELECT * FROM messages")
+// Query is used to retrieve messages from the database
+func Query(db *sql.DB, limit ...int) ([]Message, error) {
+	rows, err := db.Query("SELECT * FROM messages LIMIT ?", limit)
 	if err != nil {
 		return nil, fmt.Errorf("failed to execute the query: %w", err)
 	}
