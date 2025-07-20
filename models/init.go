@@ -5,8 +5,9 @@ import (
 	"fmt"
 )
 
-func InitDB(driver, filepath string) (*sql.DB, error) {
-	db, err := sql.Open(driver, filepath)
+// InitDB is used to initialize the database
+func InitDB(driver, path string) (*sql.DB, error) {
+	db, err := sql.Open(driver, path)
 	if err != nil {
 		return nil, fmt.Errorf("failed to open a connection to the database: %w", err)
 	}
