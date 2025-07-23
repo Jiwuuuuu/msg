@@ -20,13 +20,13 @@ func InitDB(driver, path string) (*sql.DB, error) {
 			timestamp INTEGER,
 			content TEXT NOT NULL,
 			checksum TEXT NOT NULL,
-			username TEXT NOT NULL,
+			username TEXT NOT NULL
 		);
 		`,
 		`
 		CREATE TABLE IF NOT EXISTS rooms (
 			roomID INTEGER PRIMARY KEY AUTOINCREMENT,
-			name TEXT NOT NULL,
+			name TEXT NOT NULL
 		);
 		`,
 	}
