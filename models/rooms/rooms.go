@@ -28,7 +28,7 @@ func (r *Room) Add(db *sql.DB) error {
 }
 
 // Query is used to retrieve information about rooms from the database
-func Query(db *sql.DB, limit ...int) ([]Room, error) {
+func Query(db *sql.DB, limit int) ([]Room, error) {
 	rows, err := db.Query("SELECT * FROM rooms LIMIT ?", limit)
 	if err != nil {
 		return nil, fmt.Errorf("failed to execute the query: %w", err)
