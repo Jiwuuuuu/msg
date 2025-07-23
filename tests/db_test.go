@@ -17,12 +17,7 @@ const DEFAULT_LIMIT = 1
 func helperSetupDB(t *testing.T) *sql.DB {
 	t.Helper()
 
-	db, err := models.InitDB("sqlite", "file:test.db?mode=memory&cache=shared")
-	if err != nil {
-		t.Fatalf("failed during test setup: %v", err)
-	}
-
-	return db
+	return models.InitDB("sqlite", "file:test.db?mode=memory&cache=shared")
 }
 
 func TestMessages(t *testing.T) {

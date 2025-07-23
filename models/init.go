@@ -6,10 +6,10 @@ import (
 )
 
 // InitDB is used to initialize the database
-func InitDB(driver, path string) (*sql.DB, error) {
+func InitDB(driver, path string) *sql.DB {
 	db, err := sql.Open(driver, path)
 	if err != nil {
-		return nil, fmt.Errorf("failed to open a connection to the database: %w", err)
+		panic(fmt.Errorf("failed to open a connection to the database: %w", err))
 	}
 
 	statements := []string{
@@ -33,9 +33,9 @@ func InitDB(driver, path string) (*sql.DB, error) {
 
 	for _, s := range statements {
 		if _, err := db.Exec(s); err != nil {
-			return nil, fmt.Errorf("failed to create the table: %w", err)
+			panic(fmt.Errorf("failed to create the table: %w", err))
 		}
 	}
 
-	return db, nil
+	return db
 }
