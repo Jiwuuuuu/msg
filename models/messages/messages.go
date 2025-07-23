@@ -49,7 +49,7 @@ func (m *Message) Add(db *sql.DB) error {
 }
 
 // Query is used to retrieve messages from the database
-func Query(db *sql.DB, limit ...int) ([]Message, error) {
+func Query(db *sql.DB, limit int) ([]Message, error) {
 	rows, err := db.Query("SELECT * FROM messages LIMIT ?", limit)
 	if err != nil {
 		return nil, fmt.Errorf("failed to execute the query: %w", err)
